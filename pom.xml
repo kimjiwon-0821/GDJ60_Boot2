@@ -12,17 +12,20 @@
 	<artifactId>GDJ60_Boot2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>GDJ60_Boot2</name>
+	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+				
 		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
 		<dependency>
 		    <groupId>org.apache.tomcat.embed</groupId>
 		    <artifactId>tomcat-embed-jasper</artifactId>
 		    <!-- 버전 삭제 -->
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
