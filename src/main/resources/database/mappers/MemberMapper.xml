@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.iu.base.member.MemberDAO">
+  
+  <select id="getLogin" resultMap="getLoginResult" parameterType="MemberVO">
+  	SELECT M.USERNAME, R.NUM, R.ROLENAME FROM MEMBER M INNER JOIN MEMBER_ROLE MR ON (M.USERNAME = MR.USERNAME )
+  	INNER JOIN ROLE R ON (MR.NUM = R.NUM) WHERE M.USERNAME=#{userName} AND M.PASSWORD=#{password}
+  </select>
+  <resultMap type="MemberVO" id="getLoginResult">
+  	<id property="userName" column="USERNAME"/>
+  	<collection property="roleVOs" javaType="List" ofType="RoleVO">
+  		<id property="num" column="NUM"/>
+  		<result property="roleName" column="ROLENAME"/>
+  	</collection>
+  </resultMap>
+  
+  <insert id="setJoin" parameterType="MemberVO">
+  	INSERT INTO MEMBER VALUES (#{userName}, #{password},#{name},#{email},#{birth},#{enabled})
+  </insert>
+  <insert id="setMemberRole" parameterType="Map">
+  	INSERT INTO MEMBER_ROLE (USERNAME, NUM) VALUES (#{userName},#{num})
+  </insert>
+  
+  <select id="idDuplicateCheck" resultType="MemberVO" parameterType="MemberVO">
+  	SELECT USERNAME FROM MEMBER WHERE USERNAME=#{userName}
+  </select>
+  
+</mapper>

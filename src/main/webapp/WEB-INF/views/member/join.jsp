@@ -3,71 +3,67 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-	<head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Modern Business - Start Bootstrap Template</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
 	<c:import url="../temp/style.jsp"></c:import>
-    </head>
-	<body class="d-flex flex-column h-100">
-       <main class="flex-shrink-0">
-       		<!-- Navigation start-->
-           <c:import url="../temp/header.jsp"></c:import>
-			<!-- Navigation end-->
-			
-			<!-- Page content start -->
+</head>
+<body  class="d-flex flex-column h-100">
+	<main class="flex-shrink-0">
+	<!-- Navigation start-->
+    <c:import url="../temp/header.jsp"></c:import>
+	<!-- Navigation end-->
+	<!-- Page content start -->
             <section class="py-5">
                 <div class="container px-5">
                     <!-- Contact form-->
                     <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
                         <div class="text-center mb-5">
                             <div class="feature bg-success bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
-                            <h1 class="fw-bolder">Get in touch</h1>
+                            <h1 class="fw-bolder">Login Page</h1>
                             <p class="lead fw-normal text-muted mb-0">We'd love to hear from you</p>
                         </div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <!-- * * * * * * * * * * * * * * *-->
-                                <!-- * * SB Forms Contact Form * *-->
-                                <!-- * * * * * * * * * * * * * * *-->
-                                <!-- This form is pre-integrated with SB Forms.-->
-                                <!-- To make this form functional, sign up at-->
-                                <!-- https://startbootstrap.com/solution/contact-forms-->
-                                <!-- to get an API token!-->
-                                <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="./add" method="post" enctype="multipart/form-data">
-                                    <!-- Title input-->
+                                <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="./join" method="post" enctype="multipart/form-data">
+                                    <!-- UserName input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="title" name="title" type="text" placeholder="Enter Title..." data-sb-validations="required" />
-                                        <label for="title">Title</label>
+                                        <input class="form-control" id="userName" name="userName" type="text" required="required" placeholder="Enter Title..." data-sb-validations="required" />
+                                        <label for="userName">UserName</label>
                                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                     </div>
-                                    <!-- Writer input-->
+                                   <!-- Password input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="writer" name="writer" type="text" data-sb-validations="required,email" />
-                                        <label for="writer">Writer</label>
-                                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                                        <input class="form-control" id="password" name="password" type="password" placeholder="Enter Title..." data-sb-validations="required" />
+                                        <label for="password">Password</label>
+                                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                     </div>
-                                    <!-- Contents input-->
+                                    <!-- Password Check input-->
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" id="contents" name="contents" placeholder="Enter Contents..." style="height: 10rem" data-sb-validations="required"></textarea>
-                                        <label for="contents">Contents</label>
-                                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                                        <input class="form-control" id="passwordCheck" name="passwordCheck" type="password" placeholder="Enter Title..." data-sb-validations="required" />
+                                        <label for="passwordCheck">Password Check</label>
+                                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                     </div>
-                                    <!-- 첨부 파일 -->
+                                    <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                    	<input type="file" name="boardFiles">
-                                    	<div id="filelist">
-                                    	
-                                    	
-                                    	</div>
-                                    	<button id="fileAdd" type="button" class="btn btn-outline-success my-2">+</button>
+                                        <input class="form-control" id="name" name="name" type="text" placeholder="Enter Title..." data-sb-validations="required" />
+                                        <label for="name">Name</label>
+                                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                    </div>
+                                    <!-- Email input-->
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="email" name="email" type="email" placeholder="Enter Title..." data-sb-validations="required" />
+                                        <label for="email">Email</label>
+                                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                    </div>
+                                    <!-- Birth input-->
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="birth" name="birth" type="date" placeholder="Enter Title..." data-sb-validations="required" />
+                                        <label for="birth">Birth</label>
+                                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                     </div>
                                     <!-- Submit Button-->
-                                    <div class="d-grid"><button class="btn btn-success btn-lg" id="submitButton" type="submit">Submit</button></div>
+                                    <div class="d-grid"><button class="btn btn-success btn-lg" id="submitButton" type="submit">Join</button></div>
                                 </form>
                             </div>
                         </div>
@@ -98,11 +94,11 @@
                 </div>
             </section>
 			<!-- Page content end-->
-			 
-      </main>
-    <!-- Footer start --> 
+
+	</main>
+	<!-- Footer start --> 
     <c:import url="../temp/footer.jsp"></c:import>
     <!-- Footer end -->
-    <script type="text/javascript" src="../js/boardForm.js"></script>
+    <script type="text/javascript" src="../js/joinFormCheck.js"></script>
 </body>
 </html>
