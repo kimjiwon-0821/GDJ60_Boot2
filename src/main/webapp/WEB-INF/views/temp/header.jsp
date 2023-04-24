@@ -36,6 +36,8 @@
 	                            </c:otherwise>
                             </c:choose>
                             
+                            <li class="nav-item"><a class="nav-link" href="/?lang_opt=ko">KO</a></li>
+		                    <li class="nav-item"><a class="nav-link" href="/?lang_opt=en">EN</a></li>
                             
                         </ul>
                     </div>

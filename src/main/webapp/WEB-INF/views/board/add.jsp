@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -37,25 +38,24 @@
                                 <!-- To make this form functional, sign up at-->
                                 <!-- https://startbootstrap.com/solution/contact-forms-->
                                 <!-- to get an API token!-->
-                                <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="./add" method="post" enctype="multipart/form-data">
+                                    <form:form id="contactForm" data-sb-form-api-token="API_TOKEN" modelAttribute="boardVO" action="./add" method="post" enctype="multipart/form-data">
                                     <!-- Title input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="title" name="title" type="text" placeholder="Enter Title..." data-sb-validations="required" />
+                                        <form:input path="title" id="title" cssClass="form-control"/>
                                         <label for="title">Title</label>
-                                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                        <form:errors path="title"></form:errors>
                                     </div>
                                     <!-- Writer input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="writer" name="writer" type="text" data-sb-validations="required,email" />
+                                        <form:input path="writer" id="writer" cssClass="form-control"/>
                                         <label for="writer">Writer</label>
-                                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                                        <form:errors path="writer"></form:errors>
                                     </div>
                                     <!-- Contents input-->
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" id="contents" name="contents" placeholder="Enter Contents..." style="height: 10rem" data-sb-validations="required"></textarea>
+                                        <form:textarea path="contents" id="contents" cssClass="form-control"/>
                                         <label for="contents">Contents</label>
-                                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                                        <form:errors path="contents"></form:errors>
                                     </div>
                                     <!-- 첨부 파일 -->
                                     <div class="form-floating mb-3">
@@ -68,7 +68,7 @@
                                     </div>
                                     <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-success btn-lg" id="submitButton" type="submit">Submit</button></div>
-                                </form>
+                                </form:form>
                             </div>
                         </div>
                     </div>
