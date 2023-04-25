@@ -19,6 +19,9 @@ import com.iu.base.board.BoardVO;
 import com.iu.base.board.notice.NoticeVO;
 import com.iu.base.util.Pager;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/qna/*")
 public class QnaController {
@@ -60,15 +63,24 @@ public class QnaController {
 	
 	//add
 		@GetMapping("add")
-		public ModelAndView setInsert() throws Exception{
+		public ModelAndView setInsert(@ModelAttribute BoardVO boardVO) throws Exception{
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("board/add");
 			return mv;
 		}
 		@PostMapping("add")
 		public ModelAndView setInsert(@Valid BoardVO boardVO,BindingResult bindingResult ,MultipartFile[] boardFiles) throws Exception{
-			int result = qnaService.setInsert(boardVO,boardFiles);
 			ModelAndView mv = new ModelAndView();
+			if(bindingResult.hasErrors()) {
+				mv.setViewName("board/add");
+				log.warn("검증 실패");
+				return mv;
+			}
+			
+			for(MultipartFile multipartFile: boardFiles) {
+				log.info("OriginalName :{} Size: {}",multipartFile.getOriginalFilename(),multipartFile.getSize());
+			}
+			int result = qnaService.setInsert(boardVO,boardFiles);
 			mv.setViewName("redirect:./list");
 			return mv;
 		}

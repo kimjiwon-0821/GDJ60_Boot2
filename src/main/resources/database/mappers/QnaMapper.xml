@@ -51,7 +51,7 @@
   		SELECT * FROM QNAFILES WHERE FILENUM=#{fileNum}
   	</select>
   	
-  	<insert id="setInsert" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
+  	<insert id="setInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
   		INSERT INTO QNA VALUES(#{num},#{title},#{contents},#{writer},now(),0,0,0,0)
   	</insert>
   	<update id="setRefUpdate" parameterType="QnaVO">

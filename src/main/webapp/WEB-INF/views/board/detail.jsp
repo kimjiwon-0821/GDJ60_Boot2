@@ -26,7 +26,7 @@
                                 <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
                                 <div class="ms-3">
                                     <div class="fw-bold">${boardVO.writer}</div>
-                                    <div class="text-muted">News, Business</div>
+                                    <div class="text-muted">Cute Kong</div>
                                 </div>
                             </div>
                         </div>
@@ -40,8 +40,10 @@
                                     <!-- Post meta content-->
                                     <div class="text-muted fst-italic mb-2">${boardVO.date}</div>
                                     <!-- Post categories-->
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                                    <a class="badge bg-success text-decoration-none link-light" href="#!">Update</a>
+                                    <a class="badge bg-danger text-decoration-none link-light" href="#!">Delete</a>
+                                    <button id="update" type="button" class="btn btn-outline-success">Update</button>
+                                    <button id="delete" type="button" class="btn btn-outline-danger">Delete</button>
                                 </header>
                                 <!-- Preview image figure-->
                                 <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>

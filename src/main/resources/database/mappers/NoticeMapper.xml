@@ -54,5 +54,8 @@
   		SELECT * FROM NOTICEFILES WHERE FILENUM=#{fileNum}
   	</select>
   	
+  	<delete id="getDelete" parameterType="BoardVO">
+  		DELETE NOTICE WHERE NUM=#{num}
+  	</delete>
   	
   </mapper>
