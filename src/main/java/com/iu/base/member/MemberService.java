@@ -1,6 +1,7 @@
 package com.iu.base.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,10 @@ public class MemberService {
 	
 	public MemberVO idDuplicateCheck(MemberVO memberVO) throws Exception{
 		return memberDAO.idDuplicateCheck(memberVO);
+	}
+	
+	public int setLastTime(MemberVO memberVO) throws Exception{
+		return memberDAO.setLastTime(memberVO);
 	}
 	
 	

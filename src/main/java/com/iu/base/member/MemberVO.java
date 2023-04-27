@@ -29,6 +29,7 @@ public class MemberVO {
 	@Past
 	private Date birth;
 	private Boolean enabled;
+	private Date lastTime;
 	
 	private List<RoleVO> roleVOs;
 	

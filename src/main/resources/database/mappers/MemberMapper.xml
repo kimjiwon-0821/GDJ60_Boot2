@@ -28,4 +28,24 @@
   	SELECT USERNAME FROM MEMBER WHERE USERNAME=#{userName}
   </select>
   
+  <select id="getList" resultType="MemberVO">
+  	SELECT USERNAME FROM MEMBER
+  </select>
+  
+  <update id="setLastTime" parameterType="MemberVO">
+  	UPDATE MEMBER SET LASTTIME=now() WHERE USERNAME=#{userName}
+  </update>
+  
+  <update id="setEnabled" parameterType="MemberVO">
+  	UPDATE MEMBER SET ENABLED=0 WHERE USERNAME=#{userName}
+  </update>
+  
+  <select id="setScheduleCheck" parameterType="MemberVO" resultType="Integer">
+  	SELECT TIMESTAMPDIFF(DAY,LASTTIME,now()) FROM MEMBER WHERE USERNAME=#{userName}; 
+  </select>
+  
+  <select id="getBirthday" resultType="MemberVO">
+  	SELECT * FROM MEMBER WHERE DATE_FORMAT(birth,'%m-%d')=(DATE_FORMAT(now(),'%m-%d'))
+  </select>
+  
 </mapper>
