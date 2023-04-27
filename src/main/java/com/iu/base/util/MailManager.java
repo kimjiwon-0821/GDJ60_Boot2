@@ -1,13 +1,12 @@
 package com.iu.base.util;
 
-import javax.mail.Message.RecipientType;
+import javax.mail.internet.MimeMessage.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +18,7 @@ public class MailManager {
 	@Autowired
 	private JavaMailSender javaMailSender;
 
-	public void send(String to, String sub, String con/*해당VO만들기*/) throws MessagingException {
+	public void send(String to, String sub, String con) throws Exception {
 		//HTML 태그 그래도 전송하는 방법
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 		mimeMessage.setFrom(sender);
