@@ -39,6 +39,8 @@ public class MemberVO implements UserDetails{
 	
 	private List<RoleVO> roleVOs;
 	
+	private Boolean enabled;
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
@@ -94,7 +96,7 @@ public class MemberVO implements UserDetails{
 		//계정 사용 가능 여부
 		//true : 계정 활성화
 		//false: 계정 비활성화 - 로그인 안됨
-		return true;
+		return this.enabled;
 	}
 
 	

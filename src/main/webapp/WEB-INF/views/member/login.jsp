@@ -25,6 +25,9 @@
                         </div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
+                            <c:if test="${not empty param.errorMessage}">
+                            	<h1>${param.errorMessage}</h1>
+                            </c:if>
                                 <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="./login" method="post" enctype="multipart/form-data">
                                     <!-- UserName input-->
                                     <div class="form-floating mb-3">
@@ -82,4 +85,6 @@
     <c:import url="../temp/footer.jsp"></c:import>
     <!-- Footer end -->
 </body>
+<!-- script는 UserLoginFailed의 URL의 errorMessage를 숨기는 코드 -->
+<script> history.replaceState({}, null, location.pathname)</script>
 </html>

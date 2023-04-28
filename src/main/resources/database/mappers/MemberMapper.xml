@@ -6,12 +6,13 @@
 <mapper namespace="com.iu.base.member.MemberDAO">
   
   <select id="getLogin" resultMap="getLoginResult" parameterType="MemberVO">
-  	SELECT M.USERNAME,M.PASSWORD, R.NUM, R.ROLENAME FROM MEMBER M INNER JOIN MEMBER_ROLE MR ON (M.USERNAME = MR.USERNAME )
+  	SELECT M.USERNAME,M.PASSWORD, M.ENABLED, R.NUM, R.ROLENAME FROM MEMBER M INNER JOIN MEMBER_ROLE MR ON (M.USERNAME = MR.USERNAME )
   	INNER JOIN ROLE R ON (MR.NUM = R.NUM) WHERE M.USERNAME=#{username}
   </select>
   <resultMap type="MemberVO" id="getLoginResult">
   	<id property="username" column="USERNAME"/>
   	<result property="password" column="PASSWORD"/>
+  	<result property="enabled" column="ENABLED"/>
   	<collection property="roleVOs" javaType="List" ofType="RoleVO">
   		<id property="num" column="NUM"/>
   		<result property="roleName" column="ROLENAME"/>
