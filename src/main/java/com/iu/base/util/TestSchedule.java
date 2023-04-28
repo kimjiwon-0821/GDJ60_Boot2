@@ -25,7 +25,7 @@ public class TestSchedule {
 	@Autowired
 	private MailManager mailManager;
 	
-	@Scheduled(cron = "30 * * * * *")
+	//@Scheduled(cron = "30 * * * * *")
 	public void Test() throws Exception {
 		//log.error("=========반복중=======");
 //		List<MemberVO> ar = memberDAO.getList();

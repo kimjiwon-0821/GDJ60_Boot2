@@ -1,6 +1,7 @@
 package com.iu.base.member;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +30,24 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("info")
+	public void info(HttpSession session) {
+		log.error("==============login info===========");
+		//SPRING_SECURITY_CONTEXT
+//		Enumeration<String> names = session.getAttributeNames();
+//		while(names.hasMoreElements()) {
+//			log.error("======== {} ========",names.nextElement());
+//		}
+		Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl contextImpl = (SecurityContextImpl) obj;
+		Authentication authentication = contextImpl.getAuthentication();
+		
+		log.error("=== {} ===",obj);
+		log.error("=== UserName : {} ===",authentication.getName());
+		log.error("=== Detail : {} ===",authentication.getDetails());
+		log.error("=== MemberVO : {} ===",authentication.getPrincipal());
+	}
+	
 	@GetMapping("mypage")
 	public void getMyPage() throws Exception{}
 	
@@ -34,23 +55,28 @@ public class MemberController {
 	public void getAdminPage() throws Exception{}
 	
 	@GetMapping("login")
-	public ModelAndView getLogin() throws Exception{
+	public ModelAndView getLogin(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("member/login"); //갈 jsp 주소
-		return mv;
-	}
-	@PostMapping("login")
-	public ModelAndView getLogin(MemberVO memberVO, HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		memberVO = memberService.getLogin(memberVO);
-		mv.setViewName("redirect:./login/");
-		if(memberVO !=null) {
-			session.setAttribute("member", memberVO);
-			mv.setViewName("redirect:../");
+		Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		if(obj==null) {
+			mv.setViewName("member/login"); //갈 jsp 주소
+		}else {
+			mv.setViewName("redirect:/");
 		}
-		
 		return mv;
 	}
+//	@PostMapping("login")
+//	public ModelAndView getLogin(MemberVO memberVO, HttpSession session) throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		memberVO = memberService.getLogin(memberVO);
+//		mv.setViewName("redirect:./login/");
+//		if(memberVO !=null) {
+//			session.setAttribute("member", memberVO);
+//			mv.setViewName("redirect:../");
+//		}
+//		
+//		return mv;
+//	}
 	
 	@GetMapping("logout")
 	public ModelAndView getLogout(HttpSession session) throws Exception{
@@ -94,6 +120,22 @@ public class MemberController {
 			check = false;
 		}
 		return check;
+	}
+	
+	@GetMapping("findPassword")
+	public ModelAndView getFindEmail() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/findPassword"); //갈 jsp 주소
+		return mv;
+	}
+	@PostMapping("findPassword")
+	public ModelAndView getFindEmail(MemberVO memberVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberVO = memberService.getFindEmail(memberVO);
+		if((memberVO.getEmail()).equals("wldnjsqkek29@naver.com")) {
+			log.error("== {} ==",memberVO.getUsername());
+		}
+		return mv;
 	}
 	
 

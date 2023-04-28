@@ -6,11 +6,12 @@
 <mapper namespace="com.iu.base.member.MemberDAO">
   
   <select id="getLogin" resultMap="getLoginResult" parameterType="MemberVO">
-  	SELECT M.USERNAME, R.NUM, R.ROLENAME FROM MEMBER M INNER JOIN MEMBER_ROLE MR ON (M.USERNAME = MR.USERNAME )
-  	INNER JOIN ROLE R ON (MR.NUM = R.NUM) WHERE M.USERNAME=#{userName} AND M.PASSWORD=#{password}
+  	SELECT M.USERNAME,M.PASSWORD, R.NUM, R.ROLENAME FROM MEMBER M INNER JOIN MEMBER_ROLE MR ON (M.USERNAME = MR.USERNAME )
+  	INNER JOIN ROLE R ON (MR.NUM = R.NUM) WHERE M.USERNAME=#{username}
   </select>
   <resultMap type="MemberVO" id="getLoginResult">
-  	<id property="userName" column="USERNAME"/>
+  	<id property="username" column="USERNAME"/>
+  	<result property="password" column="PASSWORD"/>
   	<collection property="roleVOs" javaType="List" ofType="RoleVO">
   		<id property="num" column="NUM"/>
   		<result property="roleName" column="ROLENAME"/>
@@ -18,14 +19,14 @@
   </resultMap>
   
   <insert id="setJoin" parameterType="MemberVO">
-  	INSERT INTO MEMBER VALUES (#{userName}, #{password},#{name},#{email},#{birth},#{enabled})
+  	INSERT INTO MEMBER VALUES (#{username}, #{password},#{name},#{email},#{birth},1,now())
   </insert>
   <insert id="setMemberRole" parameterType="Map">
-  	INSERT INTO MEMBER_ROLE (USERNAME, NUM) VALUES (#{userName},#{num})
+  	INSERT INTO MEMBER_ROLE (USERNAME, NUM) VALUES (#{username},#{num})
   </insert>
   
   <select id="idDuplicateCheck" resultType="MemberVO" parameterType="MemberVO">
-  	SELECT USERNAME FROM MEMBER WHERE USERNAME=#{userName}
+  	SELECT USERNAME FROM MEMBER WHERE USERNAME=#{username}
   </select>
   
   <select id="getList" resultType="MemberVO">
@@ -33,19 +34,26 @@
   </select>
   
   <update id="setLastTime" parameterType="MemberVO">
-  	UPDATE MEMBER SET LASTTIME=now() WHERE USERNAME=#{userName}
+  	UPDATE MEMBER SET LASTTIME=now() WHERE USERNAME=#{username}
   </update>
   
   <update id="setEnabled" parameterType="MemberVO">
-  	UPDATE MEMBER SET ENABLED=0 WHERE USERNAME=#{userName}
+  	UPDATE MEMBER SET ENABLED=0 WHERE USERNAME=#{username}
   </update>
   
   <select id="setScheduleCheck" parameterType="MemberVO" resultType="Integer">
-  	SELECT TIMESTAMPDIFF(DAY,LASTTIME,now()) FROM MEMBER WHERE USERNAME=#{userName}; 
+  	SELECT TIMESTAMPDIFF(DAY,LASTTIME,now()) FROM MEMBER WHERE USERNAME=#{username} 
   </select>
   
   <select id="getBirthday" resultType="MemberVO">
   	SELECT * FROM MEMBER WHERE DATE_FORMAT(birth,'%m-%d')=(DATE_FORMAT(now(),'%m-%d'))
   </select>
+  
+  <select id="getFindEmail" parameterType="MemberVO">
+  	SELECT EMAIL FROM MEMBER WHERE USERNAME=#{username}
+  </select>
+  <update id="setPassword" parameterType="MemberVO">
+  	UPDATE MEMBER SET PASSWORD=#{password} WHERE USERNAME=#{username}
+  </update>
   
 </mapper>

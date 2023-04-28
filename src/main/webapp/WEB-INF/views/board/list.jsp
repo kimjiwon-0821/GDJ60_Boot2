@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -58,7 +59,9 @@
 	                    	</tbody>
                     	</table>
                     </div>
-                    <a href="./add" class="btn btn-outline-success">Write</a>
+                    <sec:authorize access="hasRole('ADMIN')">
+                    	<a href="./add" class="btn btn-outline-success">Write</a>
+                    </sec:authorize>
                     
                     <!-- Pasing -->
 		            <nav aria-label="Page navigation example" class="col-row my-2">

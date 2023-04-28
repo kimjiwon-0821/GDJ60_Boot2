@@ -26,4 +26,7 @@ public interface MemberDAO {
 	public int setScheduleCheck(MemberVO memberVO) throws Exception;
 	
 	public List<MemberVO> getBirthday() throws Exception;
+	
+	public MemberVO getFindEmail (MemberVO memberVO) throws Exception;
+	public MemberVO setPassword(MemberVO memberVO) throws Exception;
 }
