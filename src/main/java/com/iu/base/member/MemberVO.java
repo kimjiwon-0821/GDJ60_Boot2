@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Future;
@@ -14,13 +15,14 @@ import javax.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class MemberVO implements UserDetails{
+public class MemberVO implements UserDetails, OAuth2User{
 	@NotBlank
 	private String username;
 	@NotBlank
@@ -41,6 +43,9 @@ public class MemberVO implements UserDetails{
 	
 	private Boolean enabled;
 	
+	//OAuth2User의 Token 정보 저장
+	private Map<String , Object> attributes;
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
@@ -50,6 +55,8 @@ public class MemberVO implements UserDetails{
 		}
 		return authorities;
 	}
+	
+	
 	
 //   @Override
 //	private void getusername() {
@@ -98,8 +105,6 @@ public class MemberVO implements UserDetails{
 		//false: 계정 비활성화 - 로그인 안됨
 		return this.enabled;
 	}
-
-	
 
 	
 	

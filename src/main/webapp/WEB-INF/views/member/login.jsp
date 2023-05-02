@@ -29,6 +29,7 @@
                             	<h1>${param.errorMessage}</h1>
                             </c:if>
                                 <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="./login" method="post" enctype="multipart/form-data">
+                                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                     <!-- UserName input-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="username" name="username" value="${cookie.remember.value}" type="text" placeholder="Enter Title..." data-sb-validations="required" />
@@ -49,7 +50,8 @@
                                     <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-success btn-lg" id="submitButton" type="submit">Login</button></div>
                                 </form>
-                                <a href="./findPassword">비밀번호 찾기</a>
+                                <a href="./findPassword" class="btn btn-success my-2">비밀번호 찾기</a>
+                                <a href="/oauth2/authorization/kakao" class="btn btn-success my-2">Kakao Login</a>
                             </div>
                         </div>
                     </div>

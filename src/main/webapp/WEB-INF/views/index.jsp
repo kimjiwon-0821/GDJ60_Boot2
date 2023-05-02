@@ -43,8 +43,10 @@
                         <div class="col-lg-4 mb-5 mb-lg-0">
 	                        <%-- <c:if test="${not empty member}"> --%>
 	                        	<h1>
-	                        		<spring:message code="loginSuccess" text="없는 message" arguments="${member.userName},${member.name}" argumentSeparator=","></spring:message>
-	                        		<sec:authorize access="isAuthenticated()">로그인 성공</sec:authorize>
+	                        		<spring:message code="loginSuccess" text="없는 message" arguments="${member.username},${member.name}" argumentSeparator=","></spring:message>
+	                        		<sec:authorize access="isAuthenticated()">
+	                        			로그인 성공 : <sec:authentication property="name"/>
+	                        		</sec:authorize>
 	                        		<sec:authorize access="!isAuthenticated()">로그인 전</sec:authorize>
 	                        	</h1>
 	                        <%-- </c:if> --%>
